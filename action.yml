@@ -1,0 +1,26 @@
+name: Rust structure
+description: Check Rust source, test, and module-folder structure limits.
+inputs:
+  base-ref:
+    description: Git revision to compare against for legacy-file and exception ratcheting.
+    required: false
+    default: HEAD
+  config:
+    description: Optional JSON config path relative to the checked-out repository.
+    required: false
+    default: ""
+runs:
+  using: composite
+  steps:
+    - name: Check Rust structure
+      shell: bash
+      env:
+        BASE_REF: ${{ inputs.base-ref }}
+        CONFIG_PATH: ${{ inputs.config }}
+        ACTION_PATH: ${{ github.action_path }}
+      run: |
+        args=(--root "$GITHUB_WORKSPACE" --base "$BASE_REF")
+        if [[ -n "$CONFIG_PATH" ]]; then
+          args+=(--config "$CONFIG_PATH")
+        fi
+        python3 "$ACTION_PATH/scripts/check.py" "${args[@]}"

@@ -1,0 +1,23 @@
+action:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "action.yml"
+          - "scripts/**"
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/workflows/**"
+          - ".github/labeler.yml"
+          - ".github/dependabot.yml"
+          - ".github/PULL_REQUEST_TEMPLATE.md"
+
+docs:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "README.md"
+          - "AGENTS.md"
+          - "docs/**"
+
+maintenance:
+  - head-branch: ["^chore/", "^ci/", "^refactor/"]

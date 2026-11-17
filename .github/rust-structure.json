@@ -1,0 +1,10 @@
+{
+  "paths": ["scripts"],
+  "limits": {
+    "source": 800,
+    "source_hard": 1500,
+    "tests": 1000,
+    "folder_soft": 40,
+    "folder_hard": 60
+  }
+}
